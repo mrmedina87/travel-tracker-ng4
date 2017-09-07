@@ -12,8 +12,12 @@ var Travel = require('./app/models/travel');
 var port = process.env.PORT || 8080;
 var jwt = require('jwt-simple');
 
+var defaultRedirectionUrl = 'index.html'; // previous value: '/public/index.html' (angular1's index, but that's not working with ng4)
+
+// TO DO: redirect to angular4's host url ( hint: you can not just use sendFile )
+
 app.get('/', function(request,response) {
-  response.sendFile(__dirname + '/public/index.html');
+  response.sendFile(__dirname + defaultRedirectionUrl);
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -470,7 +474,7 @@ apiTravelRoutes.put(
 );
 
 app.get('/*', function(request, response) {
-  response.sendFile(__dirname + '/public/index.html');
+  response.sendFile(__dirname + defaultRedirectionUrl);
 });
 
 mongoose.connect(config.database);
