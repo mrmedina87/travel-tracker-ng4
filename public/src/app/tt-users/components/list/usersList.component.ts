@@ -3,11 +3,11 @@ import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  templateUrl: './usersList.component.html',
+  styleUrls: ['./usersList.component.css']
 })
 
-export class UsersComponent implements OnInit {
+export class UsersListComponent implements OnInit {
   constructor (
       private localStorageService: LocalStorageService
   ) { }

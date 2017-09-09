@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { User } from "./user";
+import { User } from "./../../models/user";
 
-import { LoginService } from './login.service';
+import { LoginService } from './../services/login.service';
 
 @Component({
   selector: 'login',
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.model.email, this.model.password).then(respJson => {
         if(respJson.successMsg) {
           this.serverMsj = respJson.successMsg;
-          this.localStorageService.set('token', respJson.successMsg);
+          this.localStorageService.set('token', respJson.token);
           this.router.navigate([this.returnUrl]);
         }
       }).catch(err => {

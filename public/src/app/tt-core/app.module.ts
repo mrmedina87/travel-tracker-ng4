@@ -4,20 +4,15 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 import { HttpModule }    from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './components/app.component';
 
-import { AppComponent } from './app.component';
-import { UsersComponent } from './users.component';
-import { LoginComponent } from './login.component';
-
-import { AuthGuard } from './auth.guard';
-import { LoginService } from './login.service';
+import { AppRoutingModule } from './../tt-routing/index.module';
+import { UsersModule } from './../tt-users/index.module';
+import { LoginModule } from './../tt-login/index.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    UsersComponent,
-    LoginComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -27,11 +22,9 @@ import { LoginService } from './login.service';
     }),
     AppRoutingModule,
     FormsModule,
-    HttpModule
-  ],
-  providers: [
-    AuthGuard,
-    LoginService
+    HttpModule,
+    LoginModule,
+    UsersModule
   ],
   bootstrap: [AppComponent]
 })
