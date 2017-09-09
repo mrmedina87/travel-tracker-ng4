@@ -20,12 +20,12 @@ export class LoginService {
     return this.loggedIn.asObservable();
   }
 
-  setIsLoggedIn(msg) {
-    this.loggedIn.next(msg);
+  setIsLoggedIn() {
+    this.loggedIn.next(!!this.localStorageService.get('token'));
   }
 
   constructor(private http: Http, private localStorageService: LocalStorageService) {
-    this.loggedIn.next(!!this.localStorageService.get('token'));
+    this.setIsLoggedIn();
   }
 
   private url = 'http://localhost:8080/api/login';

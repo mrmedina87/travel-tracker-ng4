@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         if(respJson.successMsg) {
           this.serverMsj = respJson.successMsg;
           this.localStorageService.set('token', respJson.token);
-          this.loginService.setIsLoggedIn(true);
+          this.loginService.setIsLoggedIn();
           this.router.navigate([this.returnUrl]);
         }
       }).catch(err => {
@@ -44,9 +44,8 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   
   ngOnInit() {
-    this.loginService.setIsLoggedIn(!!this.localStorageService.get('token'));
+    this.loginService.setIsLoggedIn();
     if(this.localStorageService.get('token')) {
-      // this.loginService.setIsLoggedIn(true);
       this.router.navigate(['/']);
     }
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
