@@ -13,7 +13,6 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.localStorageService.set("pibe", "hola2");
   }
   userList = ['user1', 'user2'];
 }

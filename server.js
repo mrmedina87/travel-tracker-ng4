@@ -17,7 +17,7 @@ var defaultRedirectionUrl = 'index.html'; // previous value: '/public/index.html
 // TO DO: redirect to angular4's host url ( hint: you can not just use sendFile )
 
 app.get('/', function(request,response) {
-  response.sendFile(__dirname + defaultRedirectionUrl);
+  response.sendFile(__dirname + '/' + defaultRedirectionUrl);
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
