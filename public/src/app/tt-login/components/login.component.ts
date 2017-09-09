@@ -9,8 +9,7 @@ import { LoginService } from './../services/login.service';
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [LoginService]
+  styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent implements OnInit {
@@ -34,6 +33,7 @@ export class LoginComponent implements OnInit {
         if(respJson.successMsg) {
           this.serverMsj = respJson.successMsg;
           this.localStorageService.set('token', respJson.token);
+          this.loginService.setIsLoggedIn(true);
           this.router.navigate([this.returnUrl]);
         }
       }).catch(err => {
@@ -44,6 +44,10 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   
   ngOnInit() {
+    if(this.localStorageService.get('token')) {
+      this.loginService.setIsLoggedIn(true);
+      this.router.navigate(['/']);
+    }
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 

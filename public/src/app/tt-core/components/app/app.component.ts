@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   ngOnInit() {
+    // console.log('init');
   }
   
   title = 'app';

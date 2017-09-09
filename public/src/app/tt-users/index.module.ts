@@ -6,9 +6,6 @@ import { FormsModule } from '@angular/forms';
 
 import { UsersListComponent } from './components/list/usersList.component';
 
-
-// import { LoginService } from './services/login.service';
-
 @NgModule({
   declarations: [
     UsersListComponent
@@ -19,10 +16,7 @@ import { UsersListComponent } from './components/list/usersList.component';
   ],
   exports: [
     UsersListComponent
-  ]/*,
-  providers: [
-    LoginService
-  ]*/
+  ]
 })
 
 export class UsersModule { }
