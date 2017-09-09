@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
+import { Router } from '@angular/router';
+
 import { LoginService } from './../../../tt-login/services/login.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -15,12 +17,13 @@ export class HeaderComponent implements OnInit {
 
   constructor (
       private localStorageService: LocalStorageService,
+      private router: Router,
       private loginService: LoginService
   ) { 
     this.subscription = this.loginService.followIsLoggedIn().subscribe(message => { 
       this.loggedIn = message; 
     });
-    this.loginService.setIsLoggedIn(!!localStorage.getItem('auth-tt.token'));
+    this.loginService.setIsLoggedIn(!!this.localStorageService.get('token'));
   }
 
   ngOnInit() {
@@ -29,5 +32,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     // this.localStorageService.set('token','');
     localStorage.removeItem('auth-tt.token');
+    this.loginService.setIsLoggedIn(false);
+    this.router.navigate(['/login']);
   }
 }

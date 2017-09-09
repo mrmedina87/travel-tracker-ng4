@@ -21,13 +21,11 @@ export class LoginService {
   }
 
   setIsLoggedIn(msg) {
-    console.log("setIsLoggedIn", msg);
     this.loggedIn.next(msg);
   }
 
   constructor(private http: Http, private localStorageService: LocalStorageService) {
-    console.log("constructor login service");
-    this.loggedIn.next(!!localStorage.getItem('auth-tt.token'));
+    this.loggedIn.next(!!this.localStorageService.get('token'));
   }
 
   private url = 'http://localhost:8080/api/login';

@@ -44,8 +44,9 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   
   ngOnInit() {
+    this.loginService.setIsLoggedIn(!!this.localStorageService.get('token'));
     if(this.localStorageService.get('token')) {
-      this.loginService.setIsLoggedIn(true);
+      // this.loginService.setIsLoggedIn(true);
       this.router.navigate(['/']);
     }
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
