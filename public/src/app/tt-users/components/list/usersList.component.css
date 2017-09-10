@@ -2,36 +2,3 @@
   padding: 10px;
   border: 1px solid #ccc;
 }
-
-ul.users-list, ul.travels-list {
-  border: 1px solid #ccc;
-  list-style: outside none none;
-  margin-bottom: 30px;
-  padding: 10px;
-}
-
-ul.users-list li, ul.travels-list li {
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-ul.users-list li:last-child,ul.travels-list li:last-child {
-  margin: 0;
-}
-
-ul.users-list li button, ul.travels-list li button {
-    float: right;
-    margin-left: 10px;
-}
-
-ul.travels-list li button {
-    position: relative;
-    top: -40px;
-}
-
-ul.users-list li span, ul.travels-list li span {
-    display: inline-block;
-    line-height: 1.42857;
-    padding: 6px 12px;
-}
