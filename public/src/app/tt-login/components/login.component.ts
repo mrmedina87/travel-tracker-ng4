@@ -22,19 +22,31 @@ export class LoginComponent implements OnInit {
 
   model = new User('', '');
 
-  submitted = false;
-
   serverMsj = '';
 
-  onSubmit() { this.submitted = true; }
+  isAdmin: boolean;
 
   login() {
+    const userEmail = this.model.email;
+    let routeTo: String;
     this.loginService.login(this.model.email, this.model.password).then(respJson => {
         if(respJson.successMsg) {
           this.serverMsj = respJson.successMsg;
           this.localStorageService.set('token', respJson.token);
+          this.localStorageService.set('useremail', userEmail);
+          if(respJson.admin) {
+            this.localStorageService.set('admin', 'true');
+            routeTo = '/users';
+            // this.router.navigate([this.returnUrl]);
+            // TO DO REDIRECTING CLEVER IN THE FUTURE
+          }
+          else {
+            this.localStorageService.set('admin', '');
+            routeTo = '/travels';
+          }
+          this.isAdmin = !!respJson.admin;
           this.loginService.setIsLoggedIn();
-          this.router.navigate([this.returnUrl]);
+          this.router.navigate([routeTo]);
         }
       }).catch(err => {
         this.serverMsj = err.json().msg;

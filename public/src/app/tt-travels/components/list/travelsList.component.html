@@ -1,0 +1,12 @@
+<div class=container>
+  <h4>
+    Travels List
+  </h4>
+  <ul class="tt-list travel-list">
+    <li *ngFor="let travel of travelsList">
+      <h5>Destination: {{travel.destination}}</h5>
+      <p>Comment: {{travel.comment}}</p>
+    </li>
+  </ul>
+</div>
+

@@ -8,9 +8,14 @@ import { HttpModule }    from '@angular/http';
 import { AppRoutingModule } from './../tt-routing/index.module';
 import { UsersModule } from './../tt-users/index.module';
 import { LoginModule } from './../tt-login/index.module';
+import { TravelsModule } from './../tt-travels/index.module';
 
 import { AppComponent } from './components/app/app.component';
 import { HeaderComponent } from './components/header/header.component';
+
+import { LoginService } from './../tt-login/services/login.service';
+import { UserService } from './../tt-users/services/user.service';
+import { TravelService } from './../tt-travels/services/travel.service';
 
 @NgModule({
   imports: [
@@ -24,11 +29,17 @@ import { HeaderComponent } from './components/header/header.component';
     AppRoutingModule,
     UsersModule,
     LoginModule,
+    TravelsModule
   ],
   declarations: [
     AppComponent,
     HeaderComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    LoginService,
+    UserService,
+    TravelService
+  ]
 })
 export class AppModule { }

@@ -3,19 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { FormsModule } from '@angular/forms';
 
-import { LoginComponent } from './components/login.component';
+
+import { TravelsListComponent } from './components/list/travelsList.component';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    TravelsListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
   exports: [
-    LoginComponent
+    TravelsListComponent
   ]
 })
 
-export class LoginModule { }
+export class TravelsModule { }
