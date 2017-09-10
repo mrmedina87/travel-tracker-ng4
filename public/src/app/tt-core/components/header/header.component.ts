@@ -13,10 +13,10 @@ import { Subscription } from 'rxjs/Subscription';
 export class HeaderComponent implements OnInit {
   loggedIn: any;
   subscription: Subscription;
-
+  title = 'Travel Tracker - ng4';
   constructor (
-      private router: Router,
-      private loginService: LoginService
+    private router: Router,
+    private loginService: LoginService
   ) { 
     this.subscription = this.loginService.followIsLoggedIn().subscribe(message => { 
       this.loggedIn = message; 
@@ -28,8 +28,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('auth-tt.token');
-    this.loginService.setIsLoggedIn();
+    this.loginService.logout();
     this.router.navigate(['/login']);
   }
 }

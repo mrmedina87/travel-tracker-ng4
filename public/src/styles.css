@@ -7,3 +7,120 @@
 .ng-invalid:not(form)  {
   border-left: 5px solid #a94442; /* red */
 }
+
+body {
+  font-family: arial;
+  font-size: 16px;
+  margin: 0;
+}
+
+
+html, body {
+  height: 100%;
+}
+
+/* TODO: move below styles to their respective .component.css*/
+
+.md-datepicker-calendar-pane.md-pane-open {
+    z-index: 2000 !important;
+}
+
+footer.footer {
+    padding: 10px 0;
+}
+
+.manager-panel {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+}
+
+.container-fluid.footer-fixer {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding-bottom: 90px;
+    position: relative;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.footer-always-bottom {
+    bottom: 0;
+    height: 53px;
+    position: absolute;
+    width: 100%;
+}
+
+form.traveltraker-form {
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+form.traveltraker-form input[type="email"], form.traveltraker-form input[type="password"],form.traveltraker-form input[type="text"],form.traveltraker-form textarea {
+  border: 1px solid #ccc !important;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}
+
+.status-msg-box {
+  border: 1px solid #ccccef;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.modal-content form.traveltraker-form {
+    border: 0 none;
+    padding: 0;
+}
+
+input[type="checkbox"] + span {
+  vertical-align: top;
+}
+
+.filters-form {
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+    padding-top: 20px;
+}
+
+.filters-form h5 {
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
+}
+
+.filters-form input[type="submit"], md-datepicker + span {
+  margin-left: 20px;
+}
+
+.md-datepicker-button {
+  bottom: -7px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  position: relative;
+  right: -10px;
+}
+
+.dayscount {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+ul.travels-list li {
+  position: relative;
+}
+
+.not-found h3 {
+  font-size: 40px;
+}
+
+.not-found p {
+  font-size: 30px;
+}

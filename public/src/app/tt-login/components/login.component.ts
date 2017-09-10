@@ -29,10 +29,12 @@ export class LoginComponent implements OnInit {
   onSubmit() { this.submitted = true; }
 
   login() {
+    const userEmail = this.model.email;
     this.loginService.login(this.model.email, this.model.password).then(respJson => {
         if(respJson.successMsg) {
           this.serverMsj = respJson.successMsg;
           this.localStorageService.set('token', respJson.token);
+          this.localStorageService.set('useremail', userEmail);
           this.loginService.setIsLoggedIn();
           this.router.navigate([this.returnUrl]);
         }

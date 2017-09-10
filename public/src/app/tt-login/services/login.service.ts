@@ -10,23 +10,19 @@ import 'rxjs/add/operator/map';
 
 import { User }  from './../../models/user';
 
+// TODO: subscribe to localStorageService observables in order to get messages from changes of certain variables on the #f$%@ng localstorage: https://www.npmjs.com/package/angular-2-local-storage
+
 @Injectable()
 export class LoginService {
 
-  
-  private loggedIn = new Subject<boolean>();
-
-  followIsLoggedIn() {
-    return this.loggedIn.asObservable();
-  }
-
-  setIsLoggedIn() {
-    this.loggedIn.next(!!this.localStorageService.get('token'));
-  }
-
-  constructor(private http: Http, private localStorageService: LocalStorageService) {
+  constructor(
+    private http: Http, 
+    private localStorageService: LocalStorageService
+  ) {
     this.setIsLoggedIn();
   }
+  
+  private loggedIn = new Subject<boolean>();
 
   private url = 'http://localhost:8080/api/login';
 
@@ -36,7 +32,21 @@ export class LoginService {
     return Promise.reject(error.message || error);
   }
 
-  login(email: string, password: string): Promise<any> {
+  public followIsLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
+
+  public setIsLoggedIn() {
+    this.loggedIn.next(!!this.localStorageService.get('token'));
+  }
+
+  public logout() {
+    localStorage.removeItem('auth-tt.token');
+    localStorage.removeItem('auth-tt.useremail');
+    this.setIsLoggedIn();
+  }
+
+  public login(email: string, password: string): Promise<any> {
     return this.http
       .post(this.url, {
          userName: email,

@@ -5,8 +5,6 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './components/login.component';
 
-import { LoginService } from './services/login.service';
-
 @NgModule({
   declarations: [
     LoginComponent
@@ -17,9 +15,6 @@ import { LoginService } from './services/login.service';
   ],
   exports: [
     LoginComponent
-  ],
-  providers: [
-    LoginService
   ]
 })
 

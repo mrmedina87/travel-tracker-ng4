@@ -12,6 +12,9 @@ import { LoginModule } from './../tt-login/index.module';
 import { AppComponent } from './components/app/app.component';
 import { HeaderComponent } from './components/header/header.component';
 
+import { LoginService } from './../tt-login/services/login.service';
+import { UserService } from './../tt-users/services/user.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -29,6 +32,10 @@ import { HeaderComponent } from './components/header/header.component';
     AppComponent,
     HeaderComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    LoginService,
+    UserService
+  ]
 })
 export class AppModule { }

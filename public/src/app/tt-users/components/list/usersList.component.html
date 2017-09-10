@@ -1,10 +1,10 @@
-<div>
-  <h1>
-    Users component!
-  </h1>
-  <ul class="users">
-    <li *ngFor="let user of userList">
-      {{user}}
+<div class=container>
+  <h4>
+    Users List
+  </h4>
+  <ul class="users-list">
+    <li *ngFor="let user of usersList">
+      {{user.name}}
     </li>
   </ul>
 </div>
