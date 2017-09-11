@@ -21,14 +21,28 @@ export class TravelsListComponent implements OnInit {
 
   travelsList: any[];
 
-  ngOnInit() {
-    if(this.localStorageService.get('admin')) {
-      this.router.navigate(['/users']);
+  delete(id) {
+    if(id) {
+      this.travelService.delete(id).then(resp => {
+         this.updateList();
+      }).catch(err => {
+        console.log(err);
+      });
     }
+  }
+
+  updateList() {
     this.travelService.queryAll().then(resp => {
       this.travelsList = resp;
     }).catch(err => {
       console.log(err);
     })
+  }
+
+  ngOnInit() {
+    if(this.localStorageService.get('admin')) {
+      this.router.navigate(['/users']);
+    }
+    this.updateList();
   }
 }

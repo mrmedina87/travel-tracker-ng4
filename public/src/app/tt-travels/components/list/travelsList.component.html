@@ -4,8 +4,9 @@
   </h4>
   <ul class="tt-list travel-list">
     <li *ngFor="let travel of travelsList">
-      <h5>Destination: {{travel.destination}}</h5>
-      <p>Comment: {{travel.comment}}</p>
+      <span>Destination: {{travel.destination}}</span>
+      <span>Comment: {{travel.comment}}</span>
+      <button class="delete btn btn-danger" (click)="delete(travel._id)">Delete</button>
     </li>
   </ul>
 </div>

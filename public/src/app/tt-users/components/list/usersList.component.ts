@@ -21,15 +21,28 @@ export class UsersListComponent implements OnInit {
 
   usersList: User[];
 
-  ngOnInit() {
-    if(!this.localStorageService.get('admin')) {
-      this.router.navigate(['/travels']);
+  delete(name) {
+    if(name) {
+      this.userService.delete(name).then(resp => {
+        this.updateList();
+      }).catch(err => {
+        console.log(err);
+      });
     }
+  }
 
+  updateList() {
     this.userService.queryAll().then(resp => {
       this.usersList = resp;
     }).catch(err => {
       console.log(err);
     })
+  }
+
+  ngOnInit() {
+    if(!this.localStorageService.get('admin')) {
+      this.router.navigate(['/travels']);
+    }
+    this.updateList();
   }
 }
