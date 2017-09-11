@@ -36,8 +36,19 @@ export class TravelService {
         })
       .toPromise()
       .then(response => {
-        console.log('promise then, travel service', response.json().travelsList);
         return response.json().travelsList
+      })
+      .catch(this.handleError);
+  }
+
+  delete(id): Promise<any> {
+    let urlDelete = this.url + '/' + id;
+    return this.http.delete(urlDelete, {
+         headers: this.headers
+        })
+      .toPromise()
+      .then(response => {
+        return response
       })
       .catch(this.handleError);
   }

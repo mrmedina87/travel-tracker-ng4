@@ -16,7 +16,6 @@ export class UserService {
   constructor(
     private http: Http, 
     private localStorageService: LocalStorageService) {
-    // this.setIsLoggedIn();
   }
 
   private url = 'http://localhost:8080/api/users';
@@ -37,6 +36,18 @@ export class UserService {
       .toPromise()
       .then(response => {
         return response.json().usersList as User[]
+      })
+      .catch(this.handleError);
+  }
+
+  delete(name): Promise<any> {
+    let urlDelete = this.url + '/' + name;
+    return this.http.delete(urlDelete, {
+         headers: this.headers
+        })
+      .toPromise()
+      .then(response => {
+        return response
       })
       .catch(this.handleError);
   }
