@@ -18,7 +18,7 @@ export class UserService {
     private localStorageService: LocalStorageService) {
   }
 
-  private url = 'http://localhost:8080/api/users';
+  private url = 'http://localhost:8090/api/users';
 
   private headers = new Headers({
     'Authorization': this.localStorageService.get('token')

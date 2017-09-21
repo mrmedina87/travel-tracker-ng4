@@ -16,10 +16,9 @@ export class TravelService {
   constructor(
     private http: Http, 
     private localStorageService: LocalStorageService) {
-    // this.setIsLoggedIn();
   }
 
-  private url = 'http://localhost:8080/api/travels';
+  private url = 'http://localhost:8090/api/travels';
 
   private headers = new Headers({
     'Authorization': this.localStorageService.get('token')

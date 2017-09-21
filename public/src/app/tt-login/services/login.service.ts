@@ -19,12 +19,12 @@ export class LoginService {
     private http: Http, 
     private localStorageService: LocalStorageService
   ) {
-    this.setIsLoggedIn();
+    this.updateIsLoggedIn();
   }
   
   private loggedIn = new Subject<boolean>();
 
-  private url = 'http://localhost:8080/api/login';
+  private url = 'http://localhost:8090/api/login';
 
   private headers = new Headers({'Content-Type': 'application/json'});
 
@@ -36,14 +36,15 @@ export class LoginService {
     return this.loggedIn.asObservable();
   }
 
-  public setIsLoggedIn() {
+  public updateIsLoggedIn() {
     this.loggedIn.next(!!this.localStorageService.get('token'));
   }
 
   public logout() {
     localStorage.removeItem('auth-tt.token');
     localStorage.removeItem('auth-tt.useremail');
-    this.setIsLoggedIn();
+    localStorage.removeItem('auth-tt.admin');
+    this.updateIsLoggedIn();
   }
 
   public login(email: string, password: string): Promise<any> {
@@ -55,7 +56,10 @@ export class LoginService {
          headers: this.headers
         })
       .toPromise()
-      .then(response => response.json())
+      .then(response => {
+        this.updateIsLoggedIn();
+        return response.json()
+       })
       .catch(this.handleError);
   }
 }

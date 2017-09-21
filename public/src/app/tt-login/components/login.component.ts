@@ -24,8 +24,6 @@ export class LoginComponent implements OnInit {
 
   serverMsj = '';
 
-  isAdmin: boolean;
-
   login() {
     const userEmail = this.model.email;
     let routeTo: String;
@@ -44,8 +42,7 @@ export class LoginComponent implements OnInit {
             this.localStorageService.set('admin', '');
             routeTo = '/travels';
           }
-          this.isAdmin = !!respJson.admin;
-          this.loginService.setIsLoggedIn();
+          this.loginService.updateIsLoggedIn();
           this.router.navigate([routeTo]);
         }
       }).catch(err => {
@@ -56,7 +53,6 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   
   ngOnInit() {
-    this.loginService.setIsLoggedIn();
     if(this.localStorageService.get('token')) {
       this.router.navigate(['/']);
     }
