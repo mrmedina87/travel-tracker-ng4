@@ -59,7 +59,7 @@ export class LoginService {
       .then(response => {
         this.updateIsLoggedIn();
         return response.json()
-       })
+      })
       .catch(this.handleError);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { User } from "./../../models/user";
 
@@ -17,19 +18,19 @@ export class LoginComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private router: Router,
     private route: ActivatedRoute,
-    private loginService: LoginService
-  ) { }
+    private loginService: LoginService,
+    public toastr: ToastsManager,
+  ) { 
+  }
 
   model = new User('', '');
-
-  serverMsj = '';
 
   login() {
     const userEmail = this.model.email;
     let routeTo: String;
     this.loginService.login(this.model.email, this.model.password).then(respJson => {
         if(respJson.successMsg) {
-          this.serverMsj = respJson.successMsg;
+          this.toastr.success(respJson.successMsg, '');
           this.localStorageService.set('token', respJson.token);
           this.localStorageService.set('useremail', userEmail);
           if(respJson.admin) {
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([routeTo]);
         }
       }).catch(err => {
-        this.serverMsj = err.json().msg;
+        this.toastr.warning(err.json().msg, 'Warning');
       });
   }
 
