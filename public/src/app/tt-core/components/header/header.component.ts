@@ -18,10 +18,11 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private loginService: LoginService
   ) { 
+
     this.subscription = this.loginService.followIsLoggedIn().subscribe(message => { 
       this.loggedIn = message; 
     });
-    this.loginService.setIsLoggedIn();
+    this.loginService.updateIsLoggedIn();
   }
 
   ngOnInit() {

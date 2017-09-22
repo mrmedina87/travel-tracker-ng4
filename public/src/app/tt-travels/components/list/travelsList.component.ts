@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { Router } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { TravelService } from './../../services/travel.service';
-
-// import { User } from './../../../models/user';
 
 @Component({
   selector: 'travels',
@@ -16,7 +15,8 @@ export class TravelsListComponent implements OnInit {
   constructor (
     private travelService: TravelService,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    public toastr: ToastsManager,
   ) { }
 
   travelsList: any[];
@@ -24,9 +24,10 @@ export class TravelsListComponent implements OnInit {
   delete(id) {
     if(id) {
       this.travelService.delete(id).then(resp => {
+         this.toastr.success('Travel deleted', '');
          this.updateList();
       }).catch(err => {
-        console.log(err);
+        this.toastr.warning('Problems while trying to delete this travel - check your internet connection', 'Warning');
       });
     }
   }
@@ -35,7 +36,7 @@ export class TravelsListComponent implements OnInit {
     this.travelService.queryAll().then(resp => {
       this.travelsList = resp;
     }).catch(err => {
-      console.log(err);
+      this.toastr.warning('Problems while trying to update this view - check your internet connection', 'Warning');
     })
   }
 

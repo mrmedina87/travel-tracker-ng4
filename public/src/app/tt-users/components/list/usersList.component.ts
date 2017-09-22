@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { Router } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { UserService } from './../../services/user.service';
 
@@ -16,7 +17,8 @@ export class UsersListComponent implements OnInit {
   constructor (
       private userService: UserService,
       private localStorageService: LocalStorageService,
-      private router: Router
+      private router: Router,
+      public toastr: ToastsManager,
   ) { }
 
   usersList: User[];
@@ -24,9 +26,10 @@ export class UsersListComponent implements OnInit {
   delete(name) {
     if(name) {
       this.userService.delete(name).then(resp => {
+        this.toastr.success('User deleted', '');
         this.updateList();
       }).catch(err => {
-        console.log(err);
+        this.toastr.warning('Problems while trying to delete this user - check your internet connection', 'Warning');
       });
     }
   }
@@ -35,8 +38,8 @@ export class UsersListComponent implements OnInit {
     this.userService.queryAll().then(resp => {
       this.usersList = resp;
     }).catch(err => {
-      console.log(err);
-    })
+      this.toastr.warning('Problems while trying to update this view - check your internet connection', 'Warning');
+    });
   }
 
   ngOnInit() {

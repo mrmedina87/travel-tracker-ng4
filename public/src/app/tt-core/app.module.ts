@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { FormsModule } from '@angular/forms';
 import { HttpModule }    from '@angular/http';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './../tt-routing/index.module';
 import { UsersModule } from './../tt-users/index.module';
@@ -26,6 +28,8 @@ import { TravelService } from './../tt-travels/services/travel.service';
     }),
     FormsModule,
     HttpModule,
+    ToastModule.forRoot(),
+    BrowserAnimationsModule,
     AppRoutingModule,
     UsersModule,
     LoginModule,
