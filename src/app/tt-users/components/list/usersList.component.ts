@@ -52,18 +52,15 @@ export class UsersListComponent implements OnInit {
       {
         title: 'New/Edit User',
         message: 'Please fill the form'
-      }
+      }, {closeByClickingOutside: true}
     ).subscribe((isConfirmed) => {
-      //We get dialog result
       if(isConfirmed) {
-          console.log('accepted');
+        console.log('accepted');
       }
       else {
-          console.log('declined');
+        console.log('declined');
       }
     });
-    // console.log('This Should Open a modal!');
-
   }
 
   ngOnInit() {

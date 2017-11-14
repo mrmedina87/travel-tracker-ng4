@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 
 // import { UserService } from './../../services/user.service';
 
-// import { User } from './../../../models/user';
+import { User } from './../../../models/user';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 
 interface ConfirmModel {
@@ -19,7 +19,9 @@ interface ConfirmModel {
   styleUrls: ['./userForm.component.css']
 })
 
-export class UserFormComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
+export class UserFormComponent 
+  extends DialogComponent<ConfirmModel, boolean> 
+  implements ConfirmModel {
   title: string;
   message: string;
   constructor(
@@ -27,9 +29,13 @@ export class UserFormComponent extends DialogComponent<ConfirmModel, boolean> im
   ) {
     super(dialogService);
   }
+
+  model = new User('', '');
+
   confirm() {
     // we set dialog result as true on click on confirm button, 
     // then we can get dialog result from caller code 
+    console.log(this.model);
     console.log('pasamos por aqui efectivamente!');
     this.result = true;
     this.close();
