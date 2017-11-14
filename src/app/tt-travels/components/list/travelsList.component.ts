@@ -3,7 +3,10 @@ import { LocalStorageService } from 'angular-2-local-storage';
 import { Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
+import { TravelFormComponent } from './../form/travelForm.component';
+
 import { TravelService } from './../../services/travel.service';
+import { DialogService } from 'ng2-bootstrap-modal';
 
 @Component({
   selector: 'travels',
@@ -17,6 +20,7 @@ export class TravelsListComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private router: Router,
     public toastr: ToastsManager,
+    private dialogService: DialogService
   ) { }
 
   travelsList: any[];
@@ -38,6 +42,23 @@ export class TravelsListComponent implements OnInit {
     }).catch(err => {
       this.toastr.warning('Problems while trying to update this view - check your internet connection', 'Warning');
     })
+  }
+
+  openModal() {
+    let modal = this.dialogService.addDialog(
+      TravelFormComponent,
+      {
+        title: 'New/Edit Travel',
+        message: 'Please fill the form'
+      }, {closeByClickingOutside: true}
+    ).subscribe((isConfirmed) => {
+      if(isConfirmed) {
+        console.log('accepted');
+      }
+      else {
+        console.log('declined');
+      }
+    });
   }
 
   ngOnInit() {

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 import { AppRoutingModule } from './../tt-routing/index.module';
 import { UsersModule } from './../tt-users/index.module';
@@ -30,6 +31,7 @@ import { TravelService } from './../tt-travels/services/travel.service';
     HttpModule,
     ToastModule.forRoot(),
     BrowserAnimationsModule,
+    BootstrapModalModule,
     AppRoutingModule,
     UsersModule,
     LoginModule,

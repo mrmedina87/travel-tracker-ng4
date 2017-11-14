@@ -1,6 +1,9 @@
 <div class=container>
+  <div class="manager-panel">
+    <button class="newTravelBtn btn btn-success" (click)="openModal()">New travel</button>
+  </div>
   <h4>
-    Travels List
+    Your travels
   </h4>
   <ul class="tt-list travel-list">
     <li *ngFor="let travel of travelsList">

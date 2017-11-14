@@ -3,7 +3,10 @@ import { LocalStorageService } from 'angular-2-local-storage';
 import { Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
+import { UserFormComponent } from './../form/userForm.component';
+
 import { UserService } from './../../services/user.service';
+import { DialogService } from "ng2-bootstrap-modal";
 
 import { User } from './../../../models/user';
 
@@ -15,10 +18,11 @@ import { User } from './../../../models/user';
 
 export class UsersListComponent implements OnInit {
   constructor (
-      private userService: UserService,
-      private localStorageService: LocalStorageService,
-      private router: Router,
-      public toastr: ToastsManager,
+    private userService: UserService,
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    public toastr: ToastsManager,
+    private dialogService: DialogService
   ) { }
 
   usersList: User[];
@@ -39,6 +43,23 @@ export class UsersListComponent implements OnInit {
       this.usersList = resp;
     }).catch(err => {
       this.toastr.warning('Problems while trying to update this view - check your internet connection', 'Warning');
+    });
+  }
+
+  openModal() {
+    let modal = this.dialogService.addDialog(
+      UserFormComponent,
+      {
+        title: 'New/Edit User',
+        message: 'Please fill the form'
+      }, {closeByClickingOutside: true}
+    ).subscribe((isConfirmed) => {
+      if(isConfirmed) {
+        console.log('accepted');
+      }
+      else {
+        console.log('declined');
+      }
     });
   }
 
